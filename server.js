@@ -8,14 +8,15 @@ const app = express();
 
 const PORT = process.env.PROXY_PORT || 3111;
 
-const API_SERVICE_URL = process.env.API_SERVICE_URL || 'http://localhost:3443/api';
-const TOKEN = process.env.AUTHORIZATION_TOKEN || 'ey.abc.dce';
+const API_SERVICE_URL = process.env.API_SERVICE_URL;
+const TOKEN = process.env.AUTHORIZATION_TOKEN;
+const PROXY_PATH = process.env.PROXY_PATH || '/';
 
-app.use('/forms/v1', createProxyMiddleware({
+app.use(PROXY_PATH, createProxyMiddleware({
     target: API_SERVICE_URL,
     changeOrigin: true,
     pathRewrite: {
-        [`^/forms/v1`]: '',
+        [`^${PROXY_PATH}`]: '',
     },
     headers: {
         authorization: TOKEN,
