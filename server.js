@@ -12,6 +12,14 @@ const API_SERVICE_URL = process.env.API_SERVICE_URL;
 const TOKEN = process.env.AUTHORIZATION_TOKEN;
 const PROXY_PATH = process.env.PROXY_PATH || '/';
 
+app.options('*',(request, response)=>{
+    response.set('Access-Control-Allow-Origin','http://localhost:8080');
+    response.set('Access-Control-Allow-Credentials',true);
+    response.set('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization, mangled');
+    response.set('Access-Control-Allow-Methods','GET, POST, PUT, DELETE, PATCH');
+    response.send();
+});
+
 app.use(PROXY_PATH, createProxyMiddleware({
     target: API_SERVICE_URL,
     changeOrigin: true,
@@ -19,7 +27,7 @@ app.use(PROXY_PATH, createProxyMiddleware({
         [`^${PROXY_PATH}`]: '',
     },
     headers: {
-        authorization: TOKEN,
+        'access-control-allow-origin': 'http://localhost:8080',
     }
 }));
 
