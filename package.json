@@ -9,10 +9,10 @@
   "author": "Jose Gonzalez",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "axios": "^1.8.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "http-proxy-middleware": "^2.0.1"
+    "request": "^2.88.2"
   },
   "engines": {
     "node": "14.18.3",
