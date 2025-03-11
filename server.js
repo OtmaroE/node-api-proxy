@@ -1,10 +1,8 @@
 require('dotenv').config()
 
 const express = require('express');
-const cors = require('cors');
 const axios = require('axios')
 
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 
 const PORT = process.env.PROXY_PORT || 3111;
